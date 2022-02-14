@@ -49,6 +49,7 @@
   "meSignEmail": "邮箱",
   "meSignEmailChange": "更改邮箱",
   "meSignQrCode": "二维码名片",
+  "meSignUpAgree": "我已阅读并同意隐私条款",
   "meSignUp": "注册",
   "meSignIn": "登录",
   "meSignOut": "安全退出",
@@ -75,5 +76,6 @@
   "meVersionForward": "前往更新",
   "meUploadLog": "上传日志",
   "meUploadLogMemo": "上传的日志仅用于发现BUG，排查完会立刻被删除。非常感谢您的支持！",
+  "mePrivacyPolicy": "隐私条款",
   "meAboutUs": "关于我们"
 }

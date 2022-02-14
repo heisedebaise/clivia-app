@@ -550,6 +550,16 @@ class S {
     );
   }
 
+  /// `I have read and agree to the Privacy Policy`
+  String get meSignUpAgree {
+    return Intl.message(
+      'I have read and agree to the Privacy Policy',
+      name: 'meSignUpAgree',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Sign Up`
   String get meSignUp {
     return Intl.message(
@@ -815,6 +825,16 @@ class S {
     return Intl.message(
       'The uploaded log is only used to find bugs and will be deleted immediately after troubleshooting. Thank you very much for your support!',
       name: 'meUploadLogMemo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Privacy Policy`
+  String get mePrivacyPolicy {
+    return Intl.message(
+      'Privacy Policy',
+      name: 'mePrivacyPolicy',
       desc: '',
       args: [],
     );

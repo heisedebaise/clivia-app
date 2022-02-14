@@ -7,14 +7,9 @@ import '../components/popage.dart';
 import '../generated/l10n.dart';
 import '../util/router.dart';
 
-class AboutUs extends StatefulWidget {
+class AboutUs extends StatelessWidget {
   const AboutUs({Key? key}) : super(key: key);
 
-  @override
-  State<StatefulWidget> createState() => _AboutUsState();
-}
-
-class _AboutUsState extends State<AboutUs> {
   @override
   Widget build(BuildContext context) => ListTile(
         title: Text(S.of(context).meAboutUs),

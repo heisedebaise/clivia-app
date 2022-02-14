@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 import '../../components/password.dart';
 import '../../components/popage.dart';
@@ -21,6 +22,7 @@ class _InUpPageState extends State<InUpPage> {
   TextEditingController repeat = TextEditingController();
   TextEditingController nick = TextEditingController();
   bool visibility = false;
+  bool agree = true;
 
   @override
   void initState() {
@@ -83,8 +85,26 @@ class _InUpPageState extends State<InUpPage> {
         S.of(context).meSignNickNew,
         nick,
       ));
+      list.add(Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Checkbox(
+            value: agree,
+            onChanged: (value) {
+              setState(() {
+                agree = value ?? false;
+              });
+            },
+          ),
+          TextButton(
+            onPressed: () {},
+            child: Text(S.of(context).meSignUpAgree),
+          ),
+        ],
+      ));
       list.add(elevated(S.of(context).meSignUp));
       list.add(Row(
+        mainAxisSize: MainAxisSize.min,
         children: [
           TextButton(
             onPressed: () {
@@ -93,9 +113,6 @@ class _InUpPageState extends State<InUpPage> {
               });
             },
             child: Text(S.of(context).meSignToIn),
-          ),
-          Expanded(
-            child: Container(),
           ),
         ],
       ));
@@ -153,18 +170,20 @@ class _InUpPageState extends State<InUpPage> {
   Widget elevated(String text) => SizedBox(
         width: double.infinity,
         child: ElevatedButton(
-          onPressed: () async {
-            if (up) {
-              if (await User.signUp(
-                context,
-                username.text,
-                password.text,
-                nick.text,
-              )) Navigator.pop(context);
-            } else {
-              if (await User.signIn(context, username.text, password.text)) Navigator.pop(context);
-            }
-          },
+          onPressed: up && !agree
+              ? null
+              : () async {
+                  if (up) {
+                    if (await User.signUp(
+                      context,
+                      username.text,
+                      password.text,
+                      nick.text,
+                    )) Navigator.pop(context);
+                  } else {
+                    if (await User.signIn(context, username.text, password.text)) Navigator.pop(context);
+                  }
+                },
           child: Text(text),
         ),
       );

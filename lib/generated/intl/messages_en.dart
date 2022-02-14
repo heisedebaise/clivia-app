@@ -34,6 +34,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "meLanguage": MessageLookupByLibrary.simpleMessage("Language"),
         "meLanguageSelect":
             MessageLookupByLibrary.simpleMessage("Select your language"),
+        "mePrivacyPolicy":
+            MessageLookupByLibrary.simpleMessage("Privacy Policy"),
         "meSettings": MessageLookupByLibrary.simpleMessage("Settings"),
         "meSettingsDark": MessageLookupByLibrary.simpleMessage("Dark mode"),
         "meSettingsDarkExplain": MessageLookupByLibrary.simpleMessage(
@@ -91,6 +93,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "meSignToUp":
             MessageLookupByLibrary.simpleMessage("Register a new account"),
         "meSignUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
+        "meSignUpAgree": MessageLookupByLibrary.simpleMessage(
+            "I have read and agree to the Privacy Policy"),
         "meSignUsername":
             MessageLookupByLibrary.simpleMessage("Please enter your username"),
         "meUploadLog": MessageLookupByLibrary.simpleMessage("Upload Log"),
