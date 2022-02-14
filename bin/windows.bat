@@ -1,2 +1,2 @@
-rd /s /q build
+rd /s /q .\build
 flutter build windows
