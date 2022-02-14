@@ -10,9 +10,11 @@ import 'me/main.dart';
 import 'notifier.dart';
 import 'upgrader.dart';
 import 'user.dart';
+import 'util/io.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Io.init();
   await Context.init();
   User.sign();
   runApp(const Main());
@@ -42,6 +44,7 @@ class Main extends StatelessWidget {
             locale: Context.locale(),
             home: const MainPage(),
             builder: EasyLoading.init(),
+            navigatorKey: Context.navigatorKey,
           ),
         ),
       );
@@ -64,7 +67,7 @@ class _MainPageState extends State<MainPage> with WidgetsBindingObserver {
     Upgrader.latest(context);
     WidgetsBinding.instance!.addObserver(this);
     WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
-      lockScreen(context);
+      ScreenLocker.show(context);
     });
   }
 
@@ -117,6 +120,6 @@ class _MainPageState extends State<MainPage> with WidgetsBindingObserver {
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     super.didChangeAppLifecycleState(state);
-    if (state == AppLifecycleState.paused) lockScreen(context);
+    if (state == AppLifecycleState.paused) ScreenLocker.show(context);
   }
 }

@@ -5,6 +5,7 @@ import '../../components/popage.dart';
 import '../../generated/l10n.dart';
 import '../../user.dart';
 import '../../util/router.dart';
+import '../language.dart';
 
 class InUpPage extends StatefulWidget {
   const InUpPage({Key? key}) : super(key: key);
@@ -50,6 +51,14 @@ class _InUpPageState extends State<InUpPage> {
         popable: User.anonymous,
         close: true,
         title: up ? S.of(context).meSignUp : S.of(context).meSignIn,
+        actions: User.anonymous
+            ? null
+            : [
+                Language(
+                  icon: true,
+                  color: Theme.of(context).textTheme.bodyText1?.color,
+                ),
+              ],
         body: GestureDetector(
           behavior: HitTestBehavior.opaque,
           child: ListView(

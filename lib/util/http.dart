@@ -5,10 +5,10 @@ import 'package:http_parser/http_parser.dart';
 import '../context.dart';
 import '../generated/l10n.dart';
 import 'generator.dart';
+import 'io.dart';
 import 'toast.dart';
 
 class Http {
-  static const String _url = 'http://192.168.20.105:8080';
   static String? _sid;
 
   static Future<dynamic> service(String uri, {dynamic data, bool message = false, BuildContext? context}) async {
@@ -73,10 +73,10 @@ class Http {
     try {
       Dio dio = Dio();
       Response response = await dio.post(
-        _url + uri,
+        _url(uri),
         data: data,
         options: Options(headers: {
-          'photon-session-id': _psid(),
+          'photon-session-id': sid(),
           'accept-language': Context.locale()!.languageCode,
         }),
       );
@@ -87,7 +87,26 @@ class Http {
     }
   }
 
-  static String _psid() {
+  static Future<bool> download(String uri, String path) async {
+    try {
+      await Io.mkdirs(path.substring(0, path.lastIndexOf('/')));
+      Dio dio = Dio();
+      Response response = await dio.download(
+        _url(uri),
+        path,
+        options: Options(headers: {
+          'photon-session-id': sid(),
+          'accept-language': Context.locale()!.languageCode,
+        }),
+      );
+      dio.close();
+      return Future.value(response.statusCode == 200);
+    } on Exception {
+      return Future.value(false);
+    }
+  }
+
+  static String sid() {
     if (_sid == null) {
       _sid = Context.get('psid');
       if (_sid == null) {
@@ -102,6 +121,10 @@ class Http {
   static String url(String? string) {
     if (string == null) return '';
 
-    return string.contains('://') ? string : (_url + string);
+    return string.contains('://') ? string : _url(string);
+  }
+
+  static String _url(String uri) {
+    return 'http://${Context.host()}:8080$uri';
   }
 }
