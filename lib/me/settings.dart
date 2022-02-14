@@ -7,15 +7,8 @@ import '../notifier.dart';
 import 'language.dart';
 import 'lockscreen.dart';
 
-class Settings extends StatefulWidget {
+class Settings extends StatelessWidget {
   const Settings({Key? key}) : super(key: key);
-
-  @override
-  State createState() => _SettingsState();
-}
-
-class _SettingsState extends State<Settings> {
-  final Divider divider = const Divider(height: 1);
 
   @override
   Widget build(BuildContext context) => Card(
@@ -26,11 +19,11 @@ class _SettingsState extends State<Settings> {
               padding: const EdgeInsets.all(8),
               child: Text(S.of(context).meSettings),
             ),
-            divider,
+            const Divider(height: 1),
             const Language(),
-            divider,
+            const Divider(height: 1),
             const LockScreen(),
-            divider,
+            const Divider(height: 1),
             SwitchListTile(
               title: Text(S.of(context).meSettingsDark),
               subtitle: Text(S.of(context).meSettingsDarkExplain),

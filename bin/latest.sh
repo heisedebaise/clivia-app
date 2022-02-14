@@ -15,6 +15,7 @@ dependencies=(
  badges
  webview_flutter
  gesture_password_widget
+ pdfx
 )
 
 for i in `seq 0 $[${#dependencies[*]}-1]`; do

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 
 import '../../components/password.dart';
 import '../../components/popage.dart';
@@ -7,6 +6,7 @@ import '../../generated/l10n.dart';
 import '../../user.dart';
 import '../../util/router.dart';
 import '../language.dart';
+import '../policy.dart';
 
 class InUpPage extends StatefulWidget {
   const InUpPage({Key? key}) : super(key: key);
@@ -22,7 +22,7 @@ class _InUpPageState extends State<InUpPage> {
   TextEditingController repeat = TextEditingController();
   TextEditingController nick = TextEditingController();
   bool visibility = false;
-  bool agree = true;
+  bool agree = false;
 
   @override
   void initState() {
@@ -97,7 +97,9 @@ class _InUpPageState extends State<InUpPage> {
             },
           ),
           TextButton(
-            onPressed: () {},
+            onPressed: () {
+              PageRouter.push(context, const PrivacyPolicyPage());
+            },
             child: Text(S.of(context).meSignUpAgree),
           ),
         ],

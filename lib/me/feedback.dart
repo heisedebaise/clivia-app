@@ -1,20 +1,13 @@
-import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 
 import '../components/popage.dart';
 import '../generated/l10n.dart';
-import '../upgrader.dart';
 import '../util/router.dart';
 import '../util/style.dart';
 
-class FeedBack extends StatefulWidget {
+class FeedBack extends StatelessWidget {
   const FeedBack({Key? key}) : super(key: key);
 
-  @override
-  State<StatefulWidget> createState() => _FeedBackState();
-}
-
-class _FeedBackState extends State<FeedBack> {
   @override
   Widget build(BuildContext context) => ListTile(
         title: Text(S.of(context).meFeedback),
@@ -23,15 +16,6 @@ class _FeedBackState extends State<FeedBack> {
           PageRouter.push(context, const FeedBackPage());
         },
       );
-
-  Widget name() {
-    Text text = Text(
-      Upgrader.name(),
-      style: Style.tileSubtitle(Theme.of(context)),
-    );
-
-    return Upgrader.newer() ? Badge(child: text) : text;
-  }
 }
 
 class FeedBackPage extends StatefulWidget {

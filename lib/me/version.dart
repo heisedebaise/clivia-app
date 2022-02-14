@@ -7,20 +7,15 @@ import '../upgrader.dart';
 import '../util/router.dart';
 import '../util/style.dart';
 
-class Version extends StatefulWidget {
+class Version extends StatelessWidget {
   const Version({Key? key}) : super(key: key);
 
-  @override
-  State<StatefulWidget> createState() => _VersionState();
-}
-
-class _VersionState extends State<Version> {
   @override
   Widget build(BuildContext context) => ListTile(
         title: Row(
           children: [
             Expanded(child: Text(S.of(context).meVersion)),
-            name(),
+            name(context),
           ],
         ),
         trailing: const Icon(Icons.keyboard_arrow_right),
@@ -29,7 +24,7 @@ class _VersionState extends State<Version> {
         },
       );
 
-  Widget name() {
+  Widget name(BuildContext context) {
     Text text = Text(
       Upgrader.name(),
       style: Style.tileSubtitle(Theme.of(context)),

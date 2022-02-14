@@ -58,3 +58,11 @@ NSPhotoLibraryUsageDescription
 NSCameraUsageDescription
 NSMicrophoneUsageDescription
 ```
+
+## other
+
+```
+# pdfx
+flutter pub run pdfx:install_web
+flutter pub run pdfx:install_windows
+```
