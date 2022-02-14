@@ -9,36 +9,36 @@ import '../util/http.dart';
 import '../util/io.dart';
 import '../util/router.dart';
 
-class PrivacyPolicy extends StatelessWidget {
-  const PrivacyPolicy({Key? key}) : super(key: key);
+class PrivacyAgreement extends StatelessWidget {
+  const PrivacyAgreement({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) => ListTile(
-        title: Text(S.of(context).mePrivacyPolicy),
+        title: Text(S.of(context).mePrivacyAgreement),
         trailing: const Icon(Icons.keyboard_arrow_right),
         onTap: () {
-          PageRouter.push(context, const PrivacyPolicyPage());
+          PageRouter.push(context, const PrivacyAgreementPage());
         },
       );
 }
 
-class PrivacyPolicyPage extends StatefulWidget {
-  const PrivacyPolicyPage({Key? key}) : super(key: key);
+class PrivacyAgreementPage extends StatefulWidget {
+  const PrivacyAgreementPage({Key? key}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _PrivacyPolicyPageState();
+  State<StatefulWidget> createState() => _PrivacyAgreementPageState();
 }
 
-class _PrivacyPolicyPageState extends State<PrivacyPolicyPage> {
+class _PrivacyAgreementPageState extends State<PrivacyAgreementPage> {
   PdfControllerPinch? controller;
 
   @override
   void initState() {
     super.initState();
-    Http.service('/keyvalue/object', data: {'key': 'setting.privacy-policy'}).then((data) async {
+    Http.service('/keyvalue/object', data: {'key': 'setting.agreement.privacy'}).then((data) async {
       if (data == null) return;
 
-      String value = data['setting.privacy-policy'] ?? '';
+      String value = data['setting.agreement.privacy'] ?? '';
       if (value == '') return;
 
       dynamic array = json.decode(value);
@@ -58,7 +58,7 @@ class _PrivacyPolicyPageState extends State<PrivacyPolicyPage> {
   @override
   Widget build(BuildContext context) => PopPage(
         close: true,
-        title: S.of(context).mePrivacyPolicy,
+        title: S.of(context).mePrivacyAgreement,
         body: controller == null ? null : PdfViewPinch(controller: controller!),
       );
 

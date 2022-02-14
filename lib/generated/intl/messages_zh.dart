@@ -32,7 +32,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("您的意见和建议对我们至关重要，非常感谢您的支持！"),
         "meLanguage": MessageLookupByLibrary.simpleMessage("语言"),
         "meLanguageSelect": MessageLookupByLibrary.simpleMessage("选择您的语言"),
-        "mePrivacyPolicy": MessageLookupByLibrary.simpleMessage("隐私条款"),
+        "mePrivacyAgreement": MessageLookupByLibrary.simpleMessage("隐私协议"),
         "meSettings": MessageLookupByLibrary.simpleMessage("设置"),
         "meSettingsDark": MessageLookupByLibrary.simpleMessage("深色模式"),
         "meSettingsDarkExplain":
@@ -71,7 +71,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "meSignToIn": MessageLookupByLibrary.simpleMessage("我已有账号"),
         "meSignToUp": MessageLookupByLibrary.simpleMessage("注册新账号"),
         "meSignUp": MessageLookupByLibrary.simpleMessage("注册"),
-        "meSignUpAgree": MessageLookupByLibrary.simpleMessage("我已阅读并同意隐私条款"),
+        "meSignUpPrivacyAgreement":
+            MessageLookupByLibrary.simpleMessage("我已阅读并同意隐私协议"),
         "meSignUsername": MessageLookupByLibrary.simpleMessage("请输入用户名"),
         "meUploadLog": MessageLookupByLibrary.simpleMessage("上传日志"),
         "meUploadLogMemo": MessageLookupByLibrary.simpleMessage(

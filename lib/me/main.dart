@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'aboutus.dart';
 import 'feedback.dart';
-import 'policy.dart';
+import 'privacy.dart';
 import 'settings.dart';
 import 'sign.dart';
 import 'uploadlog.dart';
@@ -33,7 +33,7 @@ class _MePageState extends State<MePage> {
                 divider,
                 const UploadLog(),
                 divider,
-                const PrivacyPolicy(),
+                const PrivacyAgreement(),
                 divider,
                 const AboutUs(),
               ],

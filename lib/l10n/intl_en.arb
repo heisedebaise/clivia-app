@@ -49,7 +49,7 @@
   "meSignEmail": "Email",
   "meSignEmailChange": "Change Email",
   "meSignQrCode": "QR Code Business Card",
-  "meSignUpAgree": "I have read and agree to the Privacy Policy",
+  "meSignUpPrivacyAgreement": "I have read and agree to the Privacy Agreement",
   "meSignUp": "Sign Up",
   "meSignIn": "Sign In",
   "meSignInGesture": "Please enter the gesture password",
@@ -77,6 +77,6 @@
   "meVersionForward": "Go to update",
   "meUploadLog": "Upload Log",
   "meUploadLogMemo": "The uploaded log is only used to find bugs and will be deleted immediately after troubleshooting. Thank you very much for your support!",
-  "mePrivacyPolicy": "Privacy Policy",
+  "mePrivacyAgreement": "Privacy Agreement",
   "meAboutUs": "About Us"
 }

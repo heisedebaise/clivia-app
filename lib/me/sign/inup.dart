@@ -6,7 +6,7 @@ import '../../generated/l10n.dart';
 import '../../user.dart';
 import '../../util/router.dart';
 import '../language.dart';
-import '../policy.dart';
+import '../privacy.dart';
 
 class InUpPage extends StatefulWidget {
   const InUpPage({Key? key}) : super(key: key);
@@ -98,9 +98,9 @@ class _InUpPageState extends State<InUpPage> {
           ),
           TextButton(
             onPressed: () {
-              PageRouter.push(context, const PrivacyPolicyPage());
+              PageRouter.push(context, const PrivacyAgreementPage());
             },
-            child: Text(S.of(context).meSignUpAgree),
+            child: Text(S.of(context).meSignUpPrivacyAgreement),
           ),
         ],
       ));

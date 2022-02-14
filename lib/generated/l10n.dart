@@ -550,11 +550,11 @@ class S {
     );
   }
 
-  /// `I have read and agree to the Privacy Policy`
-  String get meSignUpAgree {
+  /// `I have read and agree to the Privacy Agreement`
+  String get meSignUpPrivacyAgreement {
     return Intl.message(
-      'I have read and agree to the Privacy Policy',
-      name: 'meSignUpAgree',
+      'I have read and agree to the Privacy Agreement',
+      name: 'meSignUpPrivacyAgreement',
       desc: '',
       args: [],
     );
@@ -830,11 +830,11 @@ class S {
     );
   }
 
-  /// `Privacy Policy`
-  String get mePrivacyPolicy {
+  /// `Privacy Agreement`
+  String get mePrivacyAgreement {
     return Intl.message(
-      'Privacy Policy',
-      name: 'mePrivacyPolicy',
+      'Privacy Agreement',
+      name: 'mePrivacyAgreement',
       desc: '',
       args: [],
     );
