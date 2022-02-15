@@ -23,7 +23,17 @@ class _CachedImageState extends State<CachedImage> {
 
   @override
   void initState() {
+    load();
     super.initState();
+  }
+
+  @override
+  void didUpdateWidget(covariant CachedImage oldWidget) {
+    load();
+    super.didUpdateWidget(oldWidget);
+  }
+
+  void load() {
     if (widget.uri == '') return;
 
     path = Io.absolute(widget.uri.substring(1));
