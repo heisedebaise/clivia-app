@@ -9,7 +9,9 @@ class Io {
   static Future<void> init() async {
     _dir = (await getApplicationDocumentsDirectory()).path;
     if (!_dir!.endsWith(Platform.pathSeparator)) _dir = _dir! + Platform.pathSeparator;
-    _dir = _dir?.replaceAll(Platform.pathSeparator + 'app_flutter' + Platform.pathSeparator, Platform.pathSeparator);
+    _dir = _dir!.replaceAll(Platform.pathSeparator + 'app_flutter' + Platform.pathSeparator, Platform.pathSeparator);
+    _dir = _dir! + 'clivia' + Platform.pathSeparator;
+    await mkdirs(_dir!);
   }
 
   static Future<bool> exists(String path) async {
