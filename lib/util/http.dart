@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:http_parser/http_parser.dart';
@@ -89,7 +91,7 @@ class Http {
 
   static Future<bool> download(String uri, String path) async {
     try {
-      await Io.mkdirs(path.substring(0, path.lastIndexOf('/')));
+      await Io.mkdirs(path.substring(0, path.lastIndexOf(Platform.pathSeparator)));
       Dio dio = Dio();
       Response response = await dio.download(
         _url(uri),
