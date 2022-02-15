@@ -8,15 +8,8 @@ import 'sign.dart';
 import 'uploadlog.dart';
 import 'version.dart';
 
-class MePage extends StatefulWidget {
+class MePage extends StatelessWidget {
   const MePage({Key? key}) : super(key: key);
-
-  @override
-  State createState() => _MePageState();
-}
-
-class _MePageState extends State<MePage> {
-  final Divider divider = const Divider(height: 1);
 
   @override
   Widget build(BuildContext context) => ListView(
@@ -26,16 +19,16 @@ class _MePageState extends State<MePage> {
           Card(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const FeedBack(),
-                divider,
-                const Version(),
-                divider,
-                const UploadLog(),
-                divider,
-                const PrivacyAgreement(),
-                divider,
-                const AboutUs(),
+              children: const [
+                FeedBack(),
+                Divider(height: 1),
+                Version(),
+                Divider(height: 1),
+                UploadLog(),
+                Divider(height: 1),
+                PrivacyAgreement(),
+                Divider(height: 1),
+                AboutUs(),
               ],
             ),
           ),

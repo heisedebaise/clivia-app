@@ -22,6 +22,13 @@ flutter config --enable-linux-desktop
 flutter create --org org.lpw.clivia clivia
 ```
 
+```
+# Tools > Flutter Intel > Initialize
+dependencies:
+  flutter_localizations:
+    sdk: flutter
+```
+
 ## android
 
 ```

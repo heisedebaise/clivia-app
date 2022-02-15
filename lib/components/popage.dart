@@ -47,7 +47,7 @@ class PopPage extends StatelessWidget {
           actions: actions,
           elevation: close ? 0 : Theme.of(context).appBarTheme.elevation,
         ),
-        body: body,
+        body: body == null ? null : SafeArea(child: body!),
         floatingActionButton: floatingActionButton,
         floatingActionButtonLocation: floatingActionButtonLocation,
         bottomNavigationBar: bottomNavigationBar,
