@@ -19,7 +19,7 @@ flutter config --enable-windows-desktop
 flutter config --enable-macos-desktop
 flutter config --enable-linux-desktop
 
-flutter create --org org.lpw.clivia clivia
+flutter create --org org.lpw clivia
 ```
 
 ```
