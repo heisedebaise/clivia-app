@@ -8,8 +8,8 @@ class Io {
 
   static Future<void> init() async {
     _dir = (await getApplicationDocumentsDirectory()).path;
-    if (!_dir!.endsWith('/')) _dir = '${_dir!}/';
-    _dir = _dir?.replaceAll('/app_flutter/', '/');
+    if (!_dir!.endsWith(Platform.pathSeparator)) _dir = _dir! + Platform.pathSeparator;
+    _dir = _dir?.replaceAll(Platform.pathSeparator + 'app_flutter' + Platform.pathSeparator, Platform.pathSeparator);
   }
 
   static Future<bool> exists(String path) async {
@@ -47,8 +47,14 @@ class Io {
   static String absolute(String path) {
     if (path == '') return _dir!;
 
-    if (path[0] == '/') return path;
+    if (Platform.isWindows) {
+      if (path.contains(':\\')) {
+        return path;
+      }
+    } else if (path[0] == Platform.pathSeparator) {
+      return path;
+    }
 
-    return _dir! + path;
+    return _dir! + path.replaceAll('/', Platform.pathSeparator);
   }
 }

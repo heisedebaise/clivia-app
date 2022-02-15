@@ -39,7 +39,7 @@ class _AboutUsPageState extends State<AboutUsPage> {
         close: true,
         title: S.of(context).meAboutUs,
         body: const WebView(
-          initialUrl: 'https://github.com/heisedebaise/clivia-mobile',
+          initialUrl: 'https://github.com/heisedebaise/clivia-app',
         ),
       );
 }
