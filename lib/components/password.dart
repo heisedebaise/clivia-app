@@ -16,8 +16,16 @@ class PasswordPage extends StatefulWidget {
   final bool twice;
   final Future<String?> Function(String value)? complete;
 
-  const PasswordPage(this.title, this.level, {Key? key, this.popable = true, this.full = false, this.min = 4, this.twice = false, this.complete})
-      : super(key: key);
+  const PasswordPage(
+    this.title,
+    this.level, {
+    Key? key,
+    this.popable = true,
+    this.full = false,
+    this.min = 4,
+    this.twice = false,
+    this.complete,
+  }) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _PasswordPageState();

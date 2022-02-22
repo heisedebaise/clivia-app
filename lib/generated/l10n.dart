@@ -500,6 +500,76 @@ class S {
     );
   }
 
+  /// `Destroy password`
+  String get meSignDestroy {
+    return Intl.message(
+      'Destroy password',
+      name: 'meSignDestroy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enable destroy password`
+  String get meSignDestroyOn {
+    return Intl.message(
+      'Enable destroy password',
+      name: 'meSignDestroyOn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Turn off destroy password`
+  String get meSignDestroyOff {
+    return Intl.message(
+      'Turn off destroy password',
+      name: 'meSignDestroyOff',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter the destroy password when logging in or unlocking the screen, and the account will be automatically destroyed immediately!`
+  String get meSignDestroyMemo {
+    return Intl.message(
+      'Enter the destroy password when logging in or unlocking the screen, and the account will be automatically destroyed immediately!',
+      name: 'meSignDestroyMemo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Destroy account`
+  String get meSignDestroyAccount {
+    return Intl.message(
+      'Destroy account',
+      name: 'meSignDestroyAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Account information will be completely deleted after logout and cannot be recovered!`
+  String get meSignDestroyAccountMemo {
+    return Intl.message(
+      'Account information will be completely deleted after logout and cannot be recovered!',
+      name: 'meSignDestroyAccountMemo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your login password`
+  String get meSignDestroyPassword {
+    return Intl.message(
+      'Please enter your login password',
+      name: 'meSignDestroyPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Mobile`
   String get meSignMobile {
     return Intl.message(

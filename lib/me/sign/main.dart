@@ -12,6 +12,7 @@ import '../../util/http.dart';
 import '../../util/obscure.dart';
 import '../../util/router.dart';
 import 'change.dart';
+import 'destroy.dart';
 import 'inup.dart';
 
 class SignPage extends StatefulWidget {
@@ -61,23 +62,21 @@ class _SignPageState extends State<SignPage> {
               4,
             ),
             divider,
-            Padding(
-              padding: const EdgeInsets.all(16),
-              child: SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () async {
-                    await User.signOut();
-                    if (User.anonymous) {
-                      Navigator.pop(context);
-                    } else {
-                      await PageRouter.push(context, const InUpPage());
-                      Navigator.pop(context);
-                    }
-                  },
-                  child: Text(S.of(context).meSignOut),
-                ),
-              ),
+            const DestroyPassword(),
+            divider,
+            const Destroy(),
+            divider,
+            button(
+              S.of(context).meSignOut,
+              () async {
+                await User.signOut();
+                if (User.anonymous) {
+                  Navigator.pop(context);
+                } else {
+                  await PageRouter.push(context, const InUpPage());
+                  Navigator.pop(context);
+                }
+              },
             ),
           ],
         ),
@@ -92,60 +91,68 @@ class _SignPageState extends State<SignPage> {
         ),
         trailing: const Icon(Icons.keyboard_arrow_right),
         onTap: () async {
-          if (index == 4) {
-            QrCode.show(context, 'clivia:user:${User.code('')}',
-                image: ExtendedNetworkImageProvider(
-                  Http.url(User.avatar('')),
-                  cache: true,
-                ));
-
-            return;
+          Widget? widget = page(index);
+          if (widget != null) {
+            dynamic back = await PageRouter.push(context, widget);
+            if (back != null && back) setState(() {});
           }
-
-          dynamic back = await PageRouter.push(context, page(index));
-          if (back != null && back) setState(() {});
         },
       );
 
-  Widget page(int index) {
-    if (index == 1) {
-      return ChangePage(
-        S.of(context).meSignNickChange,
-        Icons.face_retouching_natural,
-        'nick',
-        S.of(context).meSignNickChangeMemo,
-      );
+  Widget? page(int index) {
+    switch (index) {
+      case 0:
+        return PicturePage(
+          S.of(context).meSignAvatarChange,
+          'clivia.user.avatar',
+          uri: User.avatar(''),
+          ratio: 1,
+          ok: (uri) async {
+            await User.modify(context, {'avatar': uri});
+            setState(() {});
+          },
+        );
+      case 1:
+        return ChangePage(
+          S.of(context).meSignNickChange,
+          Icons.face_retouching_natural,
+          'nick',
+          S.of(context).meSignNickChangeMemo,
+        );
+      case 2:
+        return ChangePage(
+          S.of(context).meSignMobileChange,
+          Icons.phone,
+          'mobile',
+          '',
+        );
+      case 3:
+        return ChangePage(
+          S.of(context).meSignEmailChange,
+          Icons.email,
+          'email',
+          '',
+        );
+      case 4:
+        QrCode.show(
+          context,
+          'clivia:user:${User.code('')}',
+          image: ExtendedNetworkImageProvider(
+            Http.url(User.avatar('')),
+            cache: true,
+          ),
+        );
+        return null;
+      default:
+        return null;
     }
-
-    if (index == 2) {
-      return ChangePage(
-        S.of(context).meSignMobileChange,
-        Icons.phone,
-        'mobile',
-        '',
-      );
-    }
-
-    if (index == 3) {
-      return ChangePage(
-        S.of(context).meSignEmailChange,
-        Icons.email,
-        'email',
-        '',
-      );
-    }
-
-    return PicturePage(S.of(context).meSignAvatarChange, 'clivia.user.avatar', uri: User.avatar(''), ratio: 1, ok: (uri) async {
-      await User.modify(context, {'avatar': uri});
-      setState(() {});
-    });
   }
 
   Widget gesture() => SwitchListTile(
-      title: Text(S.of(context).meSignGesture),
-      value: User.gesture(),
-      onChanged: (bool on) {
-        PageRouter.push(
+        title: Text(S.of(context).meSignGesture),
+        value: User.gesture(),
+        onChanged: (bool on) {
+          PageRouter.push(
             context,
             PasswordPage(
               on ? S.of(context).meSignGestureOn : S.of(context).meSignGestureOff,
@@ -178,6 +185,19 @@ class _SignPageState extends State<SignPage> {
 
                 return Future.value(null);
               },
-            ));
-      });
+            ),
+          );
+        },
+      );
+
+  Widget button(String label, void Function() tap) => Padding(
+        padding: const EdgeInsets.all(16),
+        child: SizedBox(
+          width: double.infinity,
+          child: ElevatedButton(
+            child: Text(label),
+            onPressed: tap,
+          ),
+        ),
+      );
 }

@@ -48,6 +48,16 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("锁屏密码"),
         "meSignAvatar": MessageLookupByLibrary.simpleMessage("头像"),
         "meSignAvatarChange": MessageLookupByLibrary.simpleMessage("更改头像"),
+        "meSignDestroy": MessageLookupByLibrary.simpleMessage("注销密码"),
+        "meSignDestroyAccount": MessageLookupByLibrary.simpleMessage("注销账号"),
+        "meSignDestroyAccountMemo":
+            MessageLookupByLibrary.simpleMessage("注销后账号信息将被彻底删除，并且不可恢复！"),
+        "meSignDestroyMemo":
+            MessageLookupByLibrary.simpleMessage("在登录、解锁屏幕时输入注销密码，将立即自动注销账号！"),
+        "meSignDestroyOff": MessageLookupByLibrary.simpleMessage("关闭注销密码"),
+        "meSignDestroyOn": MessageLookupByLibrary.simpleMessage("开启注销密码"),
+        "meSignDestroyPassword":
+            MessageLookupByLibrary.simpleMessage("请输入登录密码"),
         "meSignEmail": MessageLookupByLibrary.simpleMessage("邮箱"),
         "meSignEmailChange": MessageLookupByLibrary.simpleMessage("更改邮箱"),
         "meSignGesture": MessageLookupByLibrary.simpleMessage("手势密码"),

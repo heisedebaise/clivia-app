@@ -88,6 +88,7 @@ class User {
       Map<String, dynamic> m = {};
       m['user.id'] = map['id'];
       m['user.gesture'] = map['gesture'];
+      m['user.destroy'] = map['destroy'];
       await Context.sets(m);
     }
 
@@ -110,6 +111,8 @@ class User {
   static String nick(String empty) => get('nick', empty);
 
   static bool gesture() => Context.get('user.gesture', defaultValue: false);
+
+  static bool destroy() => Context.get('user.destroy', defaultValue: false);
 
   static String code(String empty) => get('code', empty);
 

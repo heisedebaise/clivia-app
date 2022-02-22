@@ -21,6 +21,7 @@ class _SignState extends State<Sign> {
         margin: const EdgeInsets.only(bottom: 4),
         shape: const RoundedRectangleBorder(),
         child: GestureDetector(
+          behavior: HitTestBehavior.translucent,
           child: Row(
             children: [
               Padding(

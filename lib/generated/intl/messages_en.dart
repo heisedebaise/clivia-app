@@ -53,6 +53,20 @@ class MessageLookup extends MessageLookupByLibrary {
         "meSignAvatar": MessageLookupByLibrary.simpleMessage("Avatar"),
         "meSignAvatarChange":
             MessageLookupByLibrary.simpleMessage("Change Avatar"),
+        "meSignDestroy":
+            MessageLookupByLibrary.simpleMessage("Destroy password"),
+        "meSignDestroyAccount":
+            MessageLookupByLibrary.simpleMessage("Destroy account"),
+        "meSignDestroyAccountMemo": MessageLookupByLibrary.simpleMessage(
+            "Account information will be completely deleted after logout and cannot be recovered!"),
+        "meSignDestroyMemo": MessageLookupByLibrary.simpleMessage(
+            "Enter the destroy password when logging in or unlocking the screen, and the account will be automatically destroyed immediately!"),
+        "meSignDestroyOff":
+            MessageLookupByLibrary.simpleMessage("Turn off destroy password"),
+        "meSignDestroyOn":
+            MessageLookupByLibrary.simpleMessage("Enable destroy password"),
+        "meSignDestroyPassword": MessageLookupByLibrary.simpleMessage(
+            "Please enter your login password"),
         "meSignEmail": MessageLookupByLibrary.simpleMessage("Email"),
         "meSignEmailChange":
             MessageLookupByLibrary.simpleMessage("Change Email"),
