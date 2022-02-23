@@ -23,9 +23,10 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "failure": MessageLookupByLibrary.simpleMessage("unknow error!"),
         "home": MessageLookupByLibrary.simpleMessage("Home"),
         "httpFailure":
-            MessageLookupByLibrary.simpleMessage("http post failure !"),
+            MessageLookupByLibrary.simpleMessage("http post failure!"),
         "me": MessageLookupByLibrary.simpleMessage("Me"),
         "meAboutUs": MessageLookupByLibrary.simpleMessage("About Us"),
         "meFeedback": MessageLookupByLibrary.simpleMessage("Feedback"),
@@ -42,14 +43,16 @@ class MessageLookup extends MessageLookupByLibrary {
             "The interface is mainly black, which helps to save power and reduce the damage of light to the eyes"),
         "meSettingsLockScreen":
             MessageLookupByLibrary.simpleMessage("Automatically lock screen"),
-        "meSettingsLockScreenFailure":
-            MessageLookupByLibrary.simpleMessage("Lock screen password error"),
         "meSettingsLockScreenOff": MessageLookupByLibrary.simpleMessage(
             "Turn off automatic screen lock"),
         "meSettingsLockScreenOn": MessageLookupByLibrary.simpleMessage(
             "Enable automatic screen lock"),
         "meSettingsLockScreenPassword":
             MessageLookupByLibrary.simpleMessage("Lock screen password"),
+        "meSettingsLockScreenSame": MessageLookupByLibrary.simpleMessage(
+            "Same as lock screen password!"),
+        "meSettingsLockScreenWrong":
+            MessageLookupByLibrary.simpleMessage("Lock screen password wrong"),
         "meSignAvatar": MessageLookupByLibrary.simpleMessage("Avatar"),
         "meSignAvatarChange":
             MessageLookupByLibrary.simpleMessage("Change Avatar"),
@@ -67,6 +70,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Enable destroy password"),
         "meSignDestroyPassword": MessageLookupByLibrary.simpleMessage(
             "Please enter your login password"),
+        "meSignDestroySame":
+            MessageLookupByLibrary.simpleMessage("Same as destroy password!"),
+        "meSignDestroyWrong":
+            MessageLookupByLibrary.simpleMessage("Wrong destroy password!"),
         "meSignEmail": MessageLookupByLibrary.simpleMessage("Email"),
         "meSignEmailChange":
             MessageLookupByLibrary.simpleMessage("Change Email"),
@@ -76,6 +83,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Turn off gesture password"),
         "meSignGestureOn":
             MessageLookupByLibrary.simpleMessage("Enable gesture password"),
+        "meSignGestureSame":
+            MessageLookupByLibrary.simpleMessage("Same as gesture password!"),
+        "meSignGestureWrong":
+            MessageLookupByLibrary.simpleMessage("Wrong gesture password!"),
         "meSignIn": MessageLookupByLibrary.simpleMessage("Sign In"),
         "meSignInGesture": MessageLookupByLibrary.simpleMessage(
             "Please enter the gesture password"),

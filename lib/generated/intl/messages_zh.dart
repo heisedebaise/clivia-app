@@ -23,6 +23,7 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "cancel": MessageLookupByLibrary.simpleMessage("取消"),
+        "failure": MessageLookupByLibrary.simpleMessage("未知错误！"),
         "home": MessageLookupByLibrary.simpleMessage("首页"),
         "httpFailure": MessageLookupByLibrary.simpleMessage("HTTP请求失败！"),
         "me": MessageLookupByLibrary.simpleMessage("我"),
@@ -38,14 +39,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "meSettingsDarkExplain":
             MessageLookupByLibrary.simpleMessage("界面以黑色为主，有助于省电，同时可减少光线对眼睛的伤害"),
         "meSettingsLockScreen": MessageLookupByLibrary.simpleMessage("自动锁屏"),
-        "meSettingsLockScreenFailure":
-            MessageLookupByLibrary.simpleMessage("锁屏密码错误"),
         "meSettingsLockScreenOff":
             MessageLookupByLibrary.simpleMessage("关闭自动锁屏"),
         "meSettingsLockScreenOn":
             MessageLookupByLibrary.simpleMessage("开启自动锁屏"),
         "meSettingsLockScreenPassword":
             MessageLookupByLibrary.simpleMessage("锁屏密码"),
+        "meSettingsLockScreenSame":
+            MessageLookupByLibrary.simpleMessage("与锁屏密码相同！"),
+        "meSettingsLockScreenWrong":
+            MessageLookupByLibrary.simpleMessage("锁屏密码错误！"),
         "meSignAvatar": MessageLookupByLibrary.simpleMessage("头像"),
         "meSignAvatarChange": MessageLookupByLibrary.simpleMessage("更改头像"),
         "meSignDestroy": MessageLookupByLibrary.simpleMessage("注销密码"),
@@ -58,11 +61,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "meSignDestroyOn": MessageLookupByLibrary.simpleMessage("开启注销密码"),
         "meSignDestroyPassword":
             MessageLookupByLibrary.simpleMessage("请输入登录密码"),
+        "meSignDestroySame": MessageLookupByLibrary.simpleMessage("与注销密码相同！"),
+        "meSignDestroyWrong": MessageLookupByLibrary.simpleMessage("注销密码错误！"),
         "meSignEmail": MessageLookupByLibrary.simpleMessage("邮箱"),
         "meSignEmailChange": MessageLookupByLibrary.simpleMessage("更改邮箱"),
         "meSignGesture": MessageLookupByLibrary.simpleMessage("手势密码"),
         "meSignGestureOff": MessageLookupByLibrary.simpleMessage("关闭手势密码"),
         "meSignGestureOn": MessageLookupByLibrary.simpleMessage("开启手势密码"),
+        "meSignGestureSame": MessageLookupByLibrary.simpleMessage("与手势密码相同！"),
+        "meSignGestureWrong": MessageLookupByLibrary.simpleMessage("手势密码错误！"),
         "meSignIn": MessageLookupByLibrary.simpleMessage("登录"),
         "meSignInfo": MessageLookupByLibrary.simpleMessage("个人信息"),
         "meSignMobile": MessageLookupByLibrary.simpleMessage("手机号"),

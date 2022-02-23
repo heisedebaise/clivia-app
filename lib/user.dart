@@ -64,8 +64,8 @@ class User {
     Map<String, dynamic> m = {};
     if (body.containsKey('uid')) m['user.uid'] = body['uid'];
     m['user.id'] = map['id'];
-    m['user.gesture'] = map['gesture'];
     await Context.sets(m);
+    await _password();
 
     return Future.value(true);
   }
@@ -85,19 +85,92 @@ class User {
     Map<String, dynamic>? map = await Http.service('/user/sign');
     if (map != null && map.containsKey('id')) {
       _map = map;
-      Map<String, dynamic> m = {};
-      m['user.id'] = map['id'];
-      m['user.gesture'] = map['gesture'];
-      m['user.destroy'] = map['destroy'];
-      await Context.sets(m);
+      await Context.set('user.id', map['id']);
+      await _password();
     }
 
     return Future.value(null);
   }
 
+  static Future<void> _password() async {
+    Map<String, dynamic>? map = await Http.service('/user/password/has');
+    if (map == null) return;
+
+    await Context.sets({
+      'user.screen': map['screen'] ?? 0,
+      'user.gesture': map['gesture'] ?? 0,
+      'user.destroy': map['destroy'] ?? 0,
+    });
+  }
+
+  static Future<bool> passwordAuth(String type, String password) async {
+    dynamic data = await Http.service('/user/password/auth', data: {
+      'type': type,
+      'password': password,
+    });
+
+    return data != null && data;
+  }
+
+  static Future<String> passwordSet(BuildContext context, String type, String password, [bool unique = false]) async {
+    String? data = await Http.service('/user/password/set', data: {
+      'type': type,
+      'new': password,
+      'old': '',
+      'unique': unique,
+    });
+
+    switch (data) {
+      case '':
+        return '';
+      case 'gesture':
+        return S.of(context).meSignGestureSame;
+      case 'destroy':
+        return S.of(context).meSignDestroySame;
+      default:
+        return S.of(context).failure;
+    }
+  }
+
+  static Future<bool> passwordOff(String type, String password) async {
+    dynamic data = await Http.service('/user/password/off', data: {
+      'type': type,
+      'password': password,
+    });
+
+    return data != null && data;
+  }
+
   static Future<void> signOut() async {
     await Http.service('/user/sign-out');
     _map = {};
+
+    return Future.value(null);
+  }
+
+  static Future<dynamic> passwordOnOff(
+    BuildContext context,
+    bool on,
+    String type,
+    String password,
+    void Function(void Function()) setState,
+    String wrong,
+  ) async {
+    if (on) {
+      String set = await passwordSet(context, type, password);
+      if (set != '') return Future.value(set);
+
+      await User.sign();
+      setState(() {});
+
+      return Future.value(null);
+    }
+
+    bool off = await User.passwordOff(type, password);
+    if (!off) return Future.value(wrong);
+
+    await User.sign();
+    setState(() {});
 
     return Future.value(null);
   }
@@ -110,9 +183,11 @@ class User {
 
   static String nick(String empty) => get('nick', empty);
 
-  static bool gesture() => Context.get('user.gesture', defaultValue: false);
+  static bool screen() => Context.get('user.screen', defaultValue: 0) > 0;
 
-  static bool destroy() => Context.get('user.destroy', defaultValue: false);
+  static bool gesture() => Context.get('user.gesture', defaultValue: 0) > 0;
+
+  static bool destroy() => Context.get('user.destroy', defaultValue: 0) > 0;
 
   static String code(String empty) => get('code', empty);
 

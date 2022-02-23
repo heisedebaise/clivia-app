@@ -60,11 +60,21 @@ class S {
     );
   }
 
-  /// `http post failure !`
+  /// `http post failure!`
   String get httpFailure {
     return Intl.message(
-      'http post failure !',
+      'http post failure!',
       name: 'httpFailure',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `unknow error!`
+  String get failure {
+    return Intl.message(
+      'unknow error!',
+      name: 'failure',
       desc: '',
       args: [],
     );
@@ -500,6 +510,26 @@ class S {
     );
   }
 
+  /// `Wrong gesture password!`
+  String get meSignGestureWrong {
+    return Intl.message(
+      'Wrong gesture password!',
+      name: 'meSignGestureWrong',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Same as gesture password!`
+  String get meSignGestureSame {
+    return Intl.message(
+      'Same as gesture password!',
+      name: 'meSignGestureSame',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Destroy password`
   String get meSignDestroy {
     return Intl.message(
@@ -525,6 +555,16 @@ class S {
     return Intl.message(
       'Turn off destroy password',
       name: 'meSignDestroyOff',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Wrong destroy password!`
+  String get meSignDestroyWrong {
+    return Intl.message(
+      'Wrong destroy password!',
+      name: 'meSignDestroyWrong',
       desc: '',
       args: [],
     );
@@ -565,6 +605,16 @@ class S {
     return Intl.message(
       'Please enter your login password',
       name: 'meSignDestroyPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Same as destroy password!`
+  String get meSignDestroySame {
+    return Intl.message(
+      'Same as destroy password!',
+      name: 'meSignDestroySame',
       desc: '',
       args: [],
     );
@@ -810,11 +860,21 @@ class S {
     );
   }
 
-  /// `Lock screen password error`
-  String get meSettingsLockScreenFailure {
+  /// `Lock screen password wrong`
+  String get meSettingsLockScreenWrong {
     return Intl.message(
-      'Lock screen password error',
-      name: 'meSettingsLockScreenFailure',
+      'Lock screen password wrong',
+      name: 'meSettingsLockScreenWrong',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Same as lock screen password!`
+  String get meSettingsLockScreenSame {
+    return Intl.message(
+      'Same as lock screen password!',
+      name: 'meSettingsLockScreenSame',
       desc: '',
       args: [],
     );

@@ -159,31 +159,7 @@ class _SignPageState extends State<SignPage> {
               'user.sign-in.gesture',
               twice: on,
               complete: (value) async {
-                if (on) {
-                  Map<String, dynamic>? map = await Http.post('/user/gesture', data: {'old': '', 'new': value, 'repeat': value});
-                  if (map == null || !map.containsKey('code')) {
-                    return Future.value(S.of(context).httpFailure);
-                  }
-
-                  if (map['code'] > 0) return Future.value(map['message']);
-
-                  await User.sign();
-                  setState(() {});
-
-                  return Future.value(null);
-                }
-
-                Map<String, dynamic>? map = await Http.post('/user/gesture-off', data: {'gesture': value});
-                if (map == null || !map.containsKey('code')) {
-                  return Future.value(S.of(context).httpFailure);
-                }
-
-                if (map['code'] > 0) return Future.value(map['message']);
-
-                await User.sign();
-                setState(() {});
-
-                return Future.value(null);
+                return await User.passwordOnOff(context, on, 'gesture', value, setState, S.of(context).meSignGestureWrong);
               },
             ),
           );

@@ -1,15 +1,11 @@
-import 'dart:convert';
-
-import 'package:crypto/crypto.dart';
 import 'package:flutter/material.dart';
 
 import '../components/password.dart';
-import '../context.dart';
 import '../generated/l10n.dart';
+import '../user.dart';
 import '../util/router.dart';
 
 const String _levelKey = 'settings.lock-screen.level';
-const String _key = 'settings.lock-screen';
 
 class LockScreen extends StatefulWidget {
   const LockScreen({Key? key}) : super(key: key);
@@ -21,38 +17,23 @@ class LockScreen extends StatefulWidget {
 class _LockScreenState extends State<LockScreen> {
   @override
   Widget build(BuildContext context) => SwitchListTile(
-    title: Text(S.of(context).meSettingsLockScreen),
-    value: Context.get(_key, defaultValue: '') != '',
-    onChanged: (bool on) async {
-      PageRouter.push(
-        context,
-        PasswordPage(
-          on ? S.of(context).meSettingsLockScreenOn : S.of(context).meSettingsLockScreenOff,
-          _levelKey,
-          full: true,
-          twice: on,
-          complete: (value) async {
-            value = ScreenLocker._digest(value);
-            if (on) {
-              await Context.set(_key, value);
-              setState(() {});
-
-              return Future.value(null);
-            }
-
-            if (value == Context.get(_key)) {
-              await Context.remove(_key);
-              setState(() {});
-
-              return Future.value(null);
-            }
-
-            return Future.value(S.of(context).meSettingsLockScreenFailure);
-          },
-        ),
+        title: Text(S.of(context).meSettingsLockScreen),
+        value: User.screen(),
+        onChanged: (bool on) async {
+          PageRouter.push(
+            context,
+            PasswordPage(
+              on ? S.of(context).meSettingsLockScreenOn : S.of(context).meSettingsLockScreenOff,
+              _levelKey,
+              full: true,
+              twice: on,
+              complete: (value) async {
+                return await User.passwordOnOff(context, on, 'screen', value, setState, S.of(context).meSettingsLockScreenWrong);
+              },
+            ),
+          );
+        },
       );
-    },
-  );
 }
 
 class ScreenLocker {
@@ -64,7 +45,7 @@ class ScreenLocker {
   }
 
   static void show(BuildContext context) {
-    if (_on || _off || Context.get(_key, defaultValue: '') == '') return;
+    if (_on || _off || !User.screen()) return;
 
     _on = true;
     PageRouter.push(
@@ -75,21 +56,15 @@ class ScreenLocker {
         popable: false,
         full: true,
         complete: (value) async {
-          if (_digest(value) == Context.get(_key)) {
+          if (await User.passwordAuth('screen', value)) {
             _on = false;
 
             return Future.value(null);
           }
 
-          return Future.value(S.of(context).meSettingsLockScreenFailure);
+          return Future.value(S.of(context).meSettingsLockScreenWrong);
         },
       ),
     );
-  }
-
-  static String _digest(String string) {
-    string = sha1.convert(utf8.encode(_levelKey + string)).toString();
-
-    return sha1.convert(utf8.encode(string + _key)).toString();
   }
 }
