@@ -64,7 +64,7 @@ class _SignPageState extends State<SignPage> {
             divider,
             const DestroyPassword(),
             divider,
-            const Destroy(),
+            Destroy(),
             divider,
             button(
               S.of(context).meSignOut,

@@ -6,6 +6,7 @@ import 'package:http_parser/http_parser.dart';
 
 import '../context.dart';
 import '../generated/l10n.dart';
+import '../user.dart';
 import 'generator.dart';
 import 'io.dart';
 import 'toast.dart';
@@ -44,6 +45,11 @@ class Http {
     if (uri == '/user/sign-out') {
       _sid = null;
       await Context.remove('psid');
+    }
+
+    String? destroy = response.headers.value('user-destroy');
+    if (destroy != null) {
+      await User.delete(destroy);
     }
 
     return response.data;

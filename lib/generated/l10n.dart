@@ -750,6 +750,16 @@ class S {
     );
   }
 
+  /// `Wrong password!`
+  String get meSignPasswordWrong {
+    return Intl.message(
+      'Wrong password!',
+      name: 'meSignPasswordWrong',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Forgot password`
   String get meSignPasswordForget {
     return Intl.message(

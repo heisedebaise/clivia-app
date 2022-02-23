@@ -42,9 +42,9 @@ class Io {
 
   static void writeSync(String name, Uint8List bytes) => File(absolute(name)).writeAsBytesSync(bytes);
 
-  static Future<void> delete(String name) async => File(absolute(name)).delete();
+  static Future<void> delete(String name) async => File(absolute(name)).delete(recursive: true);
 
-  static void deleteSync(String name) async => File(absolute(name)).deleteSync();
+  static void deleteSync(String name) async => File(absolute(name)).deleteSync(recursive: true);
 
   static String absolute(String path) {
     if (path == '') return _dir!;

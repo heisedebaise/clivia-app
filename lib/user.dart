@@ -1,8 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 import 'context.dart';
 import 'generated/l10n.dart';
 import 'util/http.dart';
+import 'util/io.dart';
 
 class User {
   static bool anonymous = true;
@@ -205,5 +208,10 @@ class User {
     body.addAll(map);
 
     return _sign(context, '/user/modify', body);
+  }
+
+  static Future<void> delete(String id) async {
+    await Io.delete('');
+    exit(0);
   }
 }

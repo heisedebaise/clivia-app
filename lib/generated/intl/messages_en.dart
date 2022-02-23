@@ -111,6 +111,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Forgot password"),
         "meSignPasswordRepeat": MessageLookupByLibrary.simpleMessage(
             "Please enter the password again"),
+        "meSignPasswordWrong":
+            MessageLookupByLibrary.simpleMessage("Wrong password!"),
         "meSignQrCode":
             MessageLookupByLibrary.simpleMessage("QR Code Business Card"),
         "meSignToIn":

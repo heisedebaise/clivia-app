@@ -84,6 +84,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "meSignPassword": MessageLookupByLibrary.simpleMessage("请输入密码"),
         "meSignPasswordForget": MessageLookupByLibrary.simpleMessage("忘记密码"),
         "meSignPasswordRepeat": MessageLookupByLibrary.simpleMessage("请再次输入密码"),
+        "meSignPasswordWrong": MessageLookupByLibrary.simpleMessage("密码错误！"),
         "meSignQrCode": MessageLookupByLibrary.simpleMessage("二维码名片"),
         "meSignToIn": MessageLookupByLibrary.simpleMessage("我已有账号"),
         "meSignToUp": MessageLookupByLibrary.simpleMessage("注册新账号"),

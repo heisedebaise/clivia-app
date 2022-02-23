@@ -45,7 +45,7 @@ class ScreenLocker {
   }
 
   static void show(BuildContext context) {
-    if (_on || _off || !User.screen()) return;
+    if (_on || _off || !User.on() || !User.screen()) return;
 
     _on = true;
     PageRouter.push(

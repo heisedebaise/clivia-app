@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import '../../components/password.dart';
 import '../../generated/l10n.dart';
 import '../../user.dart';
+import '../../util/http.dart';
 import '../../util/router.dart';
+import '../../util/toast.dart';
 
 class DestroyPassword extends StatefulWidget {
   const DestroyPassword({Key? key}) : super(key: key);
@@ -36,7 +38,8 @@ class _DestroyPasswordState extends State<DestroyPassword> {
 }
 
 class Destroy extends StatelessWidget {
-  const Destroy({Key? key}) : super(key: key);
+  Destroy({Key? key}) : super(key: key);
+  final TextEditingController _controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) => ListTile(
@@ -48,7 +51,21 @@ class Destroy extends StatelessWidget {
             context: context,
             builder: (context) => AlertDialog(
               title: Text(S.of(context).meSignDestroyAccount),
-              content: Text(S.of(context).meSignDestroyAccountMemo),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(S.of(context).meSignDestroyAccountMemo),
+                  TextField(
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      prefixIcon: const Icon(Icons.lock),
+                      labelText: S.of(context).meSignDestroyPassword,
+                    ),
+                    controller: _controller,
+                  )
+                ],
+              ),
               actions: [
                 TextButton(
                     onPressed: () {
@@ -56,21 +73,11 @@ class Destroy extends StatelessWidget {
                     },
                     child: Text(S.of(context).cancel)),
                 TextButton(
-                    onPressed: () {
-                      PageRouter.push(
-                        context,
-                        PasswordPage(
-                          S.of(context).meSignDestroyPassword,
-                          'user.sign-in.destroy.password',
-                          twice: false,
-                          full: true,
-                          complete: (value) async {
-                            print(value);
-
-                            return Future.value('password err');
-                          },
-                        ),
-                      );
+                    onPressed: () async {
+                      dynamic data = await Http.service('/user/destroy', data: {'password': _controller.text});
+                      if (data != null && !data) {
+                        Toast.error(0, S.of(context).meSignPasswordWrong);
+                      }
                     },
                     child: Text(
                       S.of(context).ok,

@@ -69,6 +69,7 @@
   "meSignUsername": "Please enter your username",
   "meSignPassword": "Please enter the password",
   "meSignPasswordRepeat": "Please enter the password again",
+  "meSignPasswordWrong": "Wrong password!",
   "meSignPasswordForget": "Forgot password",
   "meSignNickNew": "Take a personal nickname",
   "meSignToUp": "Register a new account",

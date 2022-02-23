@@ -68,6 +68,7 @@
   "meSignUsername": "请输入用户名",
   "meSignPassword": "请输入密码",
   "meSignPasswordRepeat": "请再次输入密码",
+  "meSignPasswordWrong": "密码错误！",
   "meSignPasswordForget": "忘记密码",
   "meSignNickNew": "取一个有个性的昵称吧",
   "meSignToUp": "注册新账号",
