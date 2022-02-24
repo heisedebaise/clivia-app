@@ -53,14 +53,12 @@ class _InUpPageState extends State<InUpPage> {
         popable: User.anonymous,
         close: true,
         title: up ? S.of(context).meSignUp : S.of(context).meSignIn,
-        actions: User.anonymous
-            ? null
-            : [
-                Language(
-                  icon: true,
-                  color: Theme.of(context).textTheme.bodyText1?.color,
-                ),
-              ],
+        actions: [
+          Language(
+            icon: true,
+            color: Theme.of(context).textTheme.bodyText1?.color,
+          ),
+        ],
         body: GestureDetector(
           behavior: HitTestBehavior.opaque,
           child: ListView(

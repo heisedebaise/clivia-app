@@ -9,7 +9,9 @@ import 'sign/inup.dart';
 import 'sign/main.dart';
 
 class Sign extends StatefulWidget {
-  const Sign({Key? key}) : super(key: key);
+  final void Function(void Function()) setState;
+
+  const Sign({Key? key, required this.setState}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _SignState();
@@ -62,13 +64,9 @@ class _SignState extends State<Sign> {
               ),
             ],
           ),
-          onTap: () {
-            PageRouter.push(
-              context,
-              User.on() ? const SignPage() : const InUpPage(),
-            ).then((value) {
-              setState(() {});
-            });
+          onTap: () async {
+            await PageRouter.push(context, User.on() ? const SignPage() : const InUpPage());
+            widget.setState(() {});
           },
         ),
       );
