@@ -530,6 +530,56 @@ class S {
     );
   }
 
+  /// `Mobile`
+  String get meSignMobile {
+    return Intl.message(
+      'Mobile',
+      name: 'meSignMobile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change Mobile`
+  String get meSignMobileChange {
+    return Intl.message(
+      'Change Mobile',
+      name: 'meSignMobileChange',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email`
+  String get meSignEmail {
+    return Intl.message(
+      'Email',
+      name: 'meSignEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change Email`
+  String get meSignEmailChange {
+    return Intl.message(
+      'Change Email',
+      name: 'meSignEmailChange',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `QR Code Business Card`
+  String get meSignQrCode {
+    return Intl.message(
+      'QR Code Business Card',
+      name: 'meSignQrCode',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Destroy password`
   String get meSignDestroy {
     return Intl.message(
@@ -615,56 +665,6 @@ class S {
     return Intl.message(
       'Same as destroy password!',
       name: 'meSignDestroySame',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Mobile`
-  String get meSignMobile {
-    return Intl.message(
-      'Mobile',
-      name: 'meSignMobile',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Change Mobile`
-  String get meSignMobileChange {
-    return Intl.message(
-      'Change Mobile',
-      name: 'meSignMobileChange',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Email`
-  String get meSignEmail {
-    return Intl.message(
-      'Email',
-      name: 'meSignEmail',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Change Email`
-  String get meSignEmailChange {
-    return Intl.message(
-      'Change Email',
-      name: 'meSignEmailChange',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `QR Code Business Card`
-  String get meSignQrCode {
-    return Intl.message(
-      'QR Code Business Card',
-      name: 'meSignQrCode',
       desc: '',
       args: [],
     );

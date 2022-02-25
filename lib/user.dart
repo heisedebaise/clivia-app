@@ -126,6 +126,8 @@ class User {
     switch (data) {
       case '':
         return '';
+      case 'screen':
+        return S.of(context).meSettingsLockScreenSame;
       case 'gesture':
         return S.of(context).meSignGestureSame;
       case 'destroy':
@@ -178,9 +180,11 @@ class User {
     return Future.value(null);
   }
 
-  static String username() => Context.get('user.uid', defaultValue: '');
-
   static bool on() => _map.containsKey('code');
+
+  static String id() => get('id', '');
+
+  static String uid() => Context.get('user.uid', defaultValue: '');
 
   static String avatar(String empty) => get('avatar', empty);
 
