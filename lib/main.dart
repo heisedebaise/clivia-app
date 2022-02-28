@@ -73,7 +73,11 @@ class _MainPageState extends State<MainPage> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) => OrientationBuilder(
-        builder: (BuildContext context, Orientation orientation) => orientation == Orientation.portrait ? portrait() : landscape(),
+        builder: (BuildContext context, Orientation orientation) {
+          Context.orientation(orientation);
+
+          return orientation == Orientation.portrait ? portrait() : landscape();
+        },
       );
 
   Widget portrait() => Scaffold(

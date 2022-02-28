@@ -11,6 +11,7 @@ class Context {
   static bool active = true;
   static Map<String, dynamic> _map = {};
   static final Map<String, dynamic> _memory = {};
+  static Orientation? _orientation;
 
   static Future<void> init() async {
     String? string = await Io.readAsString('context');
@@ -84,6 +85,12 @@ class Context {
 
     return value;
   }
+
+  static void orientation(Orientation orientation) {
+    _orientation = _orientation;
+  }
+
+  static bool landscape() => _orientation == Orientation.landscape;
 
   static Future<void> _write() async => await Io.writeString('context', json.encode(_map));
 }
