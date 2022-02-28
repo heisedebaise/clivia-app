@@ -72,7 +72,11 @@ class _MainPageState extends State<MainPage> with WidgetsBindingObserver {
   }
 
   @override
-  Widget build(BuildContext context) => Scaffold(
+  Widget build(BuildContext context) => OrientationBuilder(
+        builder: (BuildContext context, Orientation orientation) => orientation == Orientation.portrait ? portrait() : landscape(),
+      );
+
+  Widget portrait() => Scaffold(
         body: body(),
         bottomNavigationBar: BottomNavigationBar(
           items: [
@@ -82,11 +86,34 @@ class _MainPageState extends State<MainPage> with WidgetsBindingObserver {
           ],
           type: BottomNavigationBarType.fixed,
           currentIndex: navigation,
+          landscapeLayout: BottomNavigationBarLandscapeLayout.linear,
           onTap: (int index) {
             setState(() {
               navigation = index;
             });
           },
+        ),
+      );
+
+  Widget landscape() => Scaffold(
+        body: Row(
+          children: [
+            NavigationRail(
+              selectedIndex: navigation,
+              destinations: [
+                destination(Icons.home_outlined, S.of(context).home),
+                destination(Icons.copyright, 'Clivia'),
+                destination(Icons.person_outline, S.of(context).me),
+              ],
+              labelType: NavigationRailLabelType.all,
+              onDestinationSelected: (int index) {
+                setState(() {
+                  navigation = index;
+                });
+              },
+            ),
+            Expanded(child: body()),
+          ],
         ),
       );
 
@@ -115,6 +142,11 @@ class _MainPageState extends State<MainPage> with WidgetsBindingObserver {
   BottomNavigationBarItem item(IconData icon, String label) => BottomNavigationBarItem(
         icon: Icon(icon),
         label: label,
+      );
+
+  NavigationRailDestination destination(IconData icon, String label) => NavigationRailDestination(
+        icon: Icon(icon),
+        label: Text(label),
       );
 
   @override
