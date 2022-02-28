@@ -90,7 +90,6 @@ class _MainPageState extends State<MainPage> with WidgetsBindingObserver {
           ],
           type: BottomNavigationBarType.fixed,
           currentIndex: navigation,
-          landscapeLayout: BottomNavigationBarLandscapeLayout.linear,
           onTap: (int index) {
             setState(() {
               navigation = index;
