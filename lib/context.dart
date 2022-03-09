@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -9,6 +10,7 @@ import 'util/io.dart';
 class Context {
   static final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
   static bool active = true;
+  static bool mobile = Platform.isAndroid || Platform.isIOS;
   static Map<String, dynamic> _map = {};
   static final Map<String, dynamic> _memory = {};
   static Orientation? _orientation;

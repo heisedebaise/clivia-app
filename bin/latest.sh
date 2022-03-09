@@ -9,13 +9,13 @@ dependencies=(
  image
  extended_image
  image_picker
+ file_picker
  url_launcher
  qr_flutter
  qr_code_scanner
  badges
  webview_flutter
  gesture_password_widget
- pdfx
 )
 
 for i in `seq 0 $[${#dependencies[*]}-1]`; do

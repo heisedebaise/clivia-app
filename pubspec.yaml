@@ -50,7 +50,7 @@ dependencies:
   badges: ^2.0.2
   webview_flutter: ^3.0.0
   gesture_password_widget: ^2.0.0
-  pdfx: ^2.0.1+1
+  file_picker: ^4.5.0
 
 dev_dependencies:
   flutter_test:

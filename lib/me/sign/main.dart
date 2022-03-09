@@ -103,8 +103,8 @@ class _SignPageState extends State<SignPage> {
     switch (index) {
       case 0:
         return PicturePage(
-          S.of(context).meSignAvatarChange,
-          'clivia.user.avatar',
+          title: S.of(context).meSignAvatarChange,
+          upload: 'clivia.user.avatar',
           uri: User.avatar(''),
           ratio: 1,
           ok: (uri) async {

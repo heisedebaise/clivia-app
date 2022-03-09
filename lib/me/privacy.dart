@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:pdfx/pdfx.dart';
 
 import '../components/popage.dart';
 import '../generated/l10n.dart';
@@ -30,8 +29,6 @@ class PrivacyAgreementPage extends StatefulWidget {
 }
 
 class _PrivacyAgreementPageState extends State<PrivacyAgreementPage> {
-  PdfControllerPinch? controller;
-
   @override
   void initState() {
     super.initState();
@@ -49,9 +46,7 @@ class _PrivacyAgreementPageState extends State<PrivacyAgreementPage> {
 
       String path = Io.absolute(uri.substring(1));
       if (!Io.existsSync(path)) await Http.download(uri, path);
-      setState(() {
-        controller = PdfControllerPinch(document: PdfDocument.openFile(path));
-      });
+      setState(() {});
     });
   }
 
@@ -59,12 +54,8 @@ class _PrivacyAgreementPageState extends State<PrivacyAgreementPage> {
   Widget build(BuildContext context) => PopPage(
         close: true,
         title: S.of(context).mePrivacyAgreement,
-        body: controller == null ? null : PdfViewPinch(controller: controller!),
+        body: const Center(
+          child: Text('coming soon'),
+        ),
       );
-
-  @override
-  void dispose() {
-    controller?.dispose();
-    super.dispose();
-  }
 }

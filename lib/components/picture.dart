@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../components/image.dart';
+import '../context.dart';
 import '../generated/l10n.dart';
+import '../util/file.dart';
 import '../util/http.dart';
 import '../util/loading.dart';
 import '../util/style.dart';
@@ -18,14 +20,13 @@ class PicturePage extends StatefulWidget {
   final double scale;
   final void Function(String uri)? ok;
 
-  const PicturePage(this.title, this.upload, {Key? key, this.uri, this.local, this.ratio, this.scale = 8, this.ok}) : super(key: key);
+  const PicturePage({Key? key, required this.title, required this.upload, this.uri, this.local, this.ratio, this.scale = 8, this.ok}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _PicturePageState();
 }
 
 class _PicturePageState extends State<PicturePage> {
-  final ImagePicker picker = ImagePicker();
   final GlobalKey<ExtendedImageEditorState> editor = GlobalKey<ExtendedImageEditorState>();
   final Divider divider = const Divider(height: 1);
   String? local;
@@ -63,7 +64,7 @@ class _PicturePageState extends State<PicturePage> {
                   return;
                 }
 
-                Map<String, dynamic>? map = await Http.upload('clivia.user.avatar', bytes: data, filename: 'avatar.jpg', contentType: 'image/jpeg');
+                Map<String, dynamic>? map = await Http.upload(widget.upload, bytes: data, filename: 'image.jpg', contentType: 'image/jpeg');
                 if (map == null || !map.containsKey('path')) {
                   Loading.hide();
                   Toast.error(0, S.of(context).pictureUploadFail);
@@ -152,6 +153,12 @@ class _PicturePageState extends State<PicturePage> {
       );
 
   void pick() {
+    if (!Context.mobile) {
+      pickFile(ImageSource.gallery);
+
+      return;
+    }
+
     showModalBottomSheet(
       context: context,
       builder: (context) => Column(
@@ -177,17 +184,21 @@ class _PicturePageState extends State<PicturePage> {
   Widget pickerItem(IconData icon, String title, ImageSource source) => ListTile(
         leading: Icon(icon),
         title: Text(title),
-        onTap: () async {
-          XFile? file = await picker.pickImage(source: source);
-          if (file == null) return;
-
-          setState(() {
-            local = file.path;
-            if (editor.currentState != null) editor.currentState!.reset();
-          });
-          Navigator.pop(context);
+        onTap: () {
+          pickFile(source);
         },
       );
+
+  Future<void> pickFile(ImageSource source) async {
+    String? file = await pickImage(source);
+    if (file == null) return;
+
+    setState(() {
+      local = file;
+      if (editor.currentState != null) editor.currentState!.reset();
+    });
+    if (Context.mobile) Navigator.pop(context);
+  }
 
   BottomNavigationBarItem toolItem(IconData icon, String label) => BottomNavigationBarItem(
         icon: Icon(icon),
