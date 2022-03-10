@@ -1,7 +1,5 @@
 {
   "title": "Clivia",
-  "httpFailure": "HTTP请求失败！",
-  "failure": "未知错误！",
   "home": "首页",
   "me": "我",
   "unset": "未设置",
@@ -91,5 +89,8 @@
   "meUploadLog": "上传日志",
   "meUploadLogMemo": "上传的日志仅用于发现BUG，排查完会立刻被删除。非常感谢您的支持！",
   "mePrivacyAgreement": "隐私协议",
-  "meAboutUs": "关于我们"
+  "meAboutUs": "关于我们",
+  "notCurrentlySupported": "暂不支持",
+  "httpFailure": "HTTP请求失败！",
+  "failure": "未知错误！"
 }

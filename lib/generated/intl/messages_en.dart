@@ -130,6 +130,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "meVersion": MessageLookupByLibrary.simpleMessage("Version"),
         "meVersionForward":
             MessageLookupByLibrary.simpleMessage("Go to update"),
+        "notCurrentlySupported":
+            MessageLookupByLibrary.simpleMessage("Not currently supported"),
         "ok": MessageLookupByLibrary.simpleMessage("OK"),
         "passwordAdvanced": MessageLookupByLibrary.simpleMessage("Advanced"),
         "passwordDigit": MessageLookupByLibrary.simpleMessage("Digit"),

@@ -97,6 +97,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "上传的日志仅用于发现BUG，排查完会立刻被删除。非常感谢您的支持！"),
         "meVersion": MessageLookupByLibrary.simpleMessage("版本更新"),
         "meVersionForward": MessageLookupByLibrary.simpleMessage("前往更新"),
+        "notCurrentlySupported": MessageLookupByLibrary.simpleMessage("暂不支持"),
         "ok": MessageLookupByLibrary.simpleMessage("确定"),
         "passwordAdvanced": MessageLookupByLibrary.simpleMessage("高级"),
         "passwordDigit": MessageLookupByLibrary.simpleMessage("数字"),

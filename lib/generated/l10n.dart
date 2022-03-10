@@ -60,26 +60,6 @@ class S {
     );
   }
 
-  /// `http post failure!`
-  String get httpFailure {
-    return Intl.message(
-      'http post failure!',
-      name: 'httpFailure',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `unknow error!`
-  String get failure {
-    return Intl.message(
-      'unknow error!',
-      name: 'failure',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Home`
   String get home {
     return Intl.message(
@@ -985,6 +965,36 @@ class S {
     return Intl.message(
       'About Us',
       name: 'meAboutUs',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Not currently supported`
+  String get notCurrentlySupported {
+    return Intl.message(
+      'Not currently supported',
+      name: 'notCurrentlySupported',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `http post failure!`
+  String get httpFailure {
+    return Intl.message(
+      'http post failure!',
+      name: 'httpFailure',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `unknow error!`
+  String get failure {
+    return Intl.message(
+      'unknow error!',
+      name: 'failure',
       desc: '',
       args: [],
     );

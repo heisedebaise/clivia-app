@@ -1,7 +1,5 @@
 {
   "title": "Clivia",
-  "httpFailure": "http post failure!",
-  "failure": "unknow error!",
   "home": "Home",
   "me": "Me",
   "unset": "Unset",
@@ -92,5 +90,8 @@
   "meUploadLog": "Upload Log",
   "meUploadLogMemo": "The uploaded log is only used to find bugs and will be deleted immediately after troubleshooting. Thank you very much for your support!",
   "mePrivacyAgreement": "Privacy Agreement",
-  "meAboutUs": "About Us"
+  "meAboutUs": "About Us",
+  "notCurrentlySupported": "Not currently supported",
+  "httpFailure": "http post failure!",
+  "failure": "unknow error!"
 }
