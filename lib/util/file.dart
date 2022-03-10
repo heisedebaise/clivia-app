@@ -20,6 +20,34 @@ Future<String?> pickImage(ImageSource source) async {
   return Future.value(result?.paths.first);
 }
 
+Future<List<String>?> pickImages() async {
+  if (Context.mobile) {
+    List<XFile>? xfiles = await _imagePicker.pickMultiImage();
+    if (xfiles == null || xfiles.isEmpty) return Future.value(null);
+
+    List<String> list = [];
+    for (XFile xfile in xfiles) {
+      list.add(xfile.path);
+    }
+
+    return Future.value(list);
+  }
+
+  FilePickerResult? result = await FilePicker.platform.pickFiles(
+    allowMultiple: true,
+    type: FileType.custom,
+    allowedExtensions: ['jpg', 'jpeg', 'png', 'gif', 'bmp'],
+  );
+  if (result == null || result.paths.isEmpty) return Future.value(null);
+
+  List<String> list = [];
+  for (String? path in result.paths) {
+    if (path != null) list.add(path);
+  }
+
+  return Future.value(list);
+}
+
 Future<String?> pickFile() async {
   FilePickerResult? result = await FilePicker.platform.pickFiles();
 
