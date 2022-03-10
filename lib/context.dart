@@ -8,9 +8,9 @@ import 'generated/l10n.dart';
 import 'util/io.dart';
 
 class Context {
+  static final bool mobile = Platform.isAndroid || Platform.isIOS;
   static final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
   static bool active = true;
-  static bool mobile = Platform.isAndroid || Platform.isIOS;
   static Map<String, dynamic> _map = {};
   static final Map<String, dynamic> _memory = {};
   static Orientation? _orientation;

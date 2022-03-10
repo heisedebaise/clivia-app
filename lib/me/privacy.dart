@@ -1,11 +1,13 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:pdfx/pdfx.dart';
 
 import '../components/popage.dart';
 import '../generated/l10n.dart';
 import '../util/http.dart';
 import '../util/io.dart';
+import '../util/keyvalue.dart';
 import '../util/router.dart';
 
 class PrivacyAgreement extends StatelessWidget {
@@ -29,13 +31,12 @@ class PrivacyAgreementPage extends StatefulWidget {
 }
 
 class _PrivacyAgreementPageState extends State<PrivacyAgreementPage> {
+  PdfControllerPinch? controller;
+
   @override
   void initState() {
     super.initState();
-    Http.service('/keyvalue/object', data: {'key': 'setting.agreement.privacy'}).then((data) async {
-      if (data == null) return;
-
-      String value = data['setting.agreement.privacy'] ?? '';
+    Keyvalue.value('setting.agreement.privacy').then((value) async {
       if (value == '') return;
 
       dynamic array = json.decode(value);
@@ -45,8 +46,10 @@ class _PrivacyAgreementPageState extends State<PrivacyAgreementPage> {
       if (uri == '') return;
 
       String path = Io.absolute(uri.substring(1));
-      if (!Io.existsSync(path)) await Http.download(uri, path);
-      setState(() {});
+      await Http.download(uri, path);
+      setState(() {
+        controller = PdfControllerPinch(document: PdfDocument.openFile(path));
+      });
     });
   }
 
@@ -54,8 +57,12 @@ class _PrivacyAgreementPageState extends State<PrivacyAgreementPage> {
   Widget build(BuildContext context) => PopPage(
         close: true,
         title: S.of(context).mePrivacyAgreement,
-        body: const Center(
-          child: Text('coming soon'),
-        ),
+        body: controller == null ? null : PdfViewPinch(controller: controller!),
       );
+
+  @override
+  void dispose() {
+    controller?.dispose();
+    super.dispose();
+  }
 }
