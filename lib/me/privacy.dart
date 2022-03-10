@@ -31,7 +31,7 @@ class PrivacyAgreementPage extends StatefulWidget {
 }
 
 class _PrivacyAgreementPageState extends State<PrivacyAgreementPage> {
-  PdfControllerPinch? controller;
+  PdfController? controller;
 
   @override
   void initState() {
@@ -48,7 +48,7 @@ class _PrivacyAgreementPageState extends State<PrivacyAgreementPage> {
       String path = Io.absolute(uri.substring(1));
       await Http.download(uri, path);
       setState(() {
-        controller = PdfControllerPinch(document: PdfDocument.openFile(path));
+        controller = PdfController(document: PdfDocument.openFile(path));
       });
     });
   }
@@ -57,7 +57,7 @@ class _PrivacyAgreementPageState extends State<PrivacyAgreementPage> {
   Widget build(BuildContext context) => PopPage(
         close: true,
         title: S.of(context).mePrivacyAgreement,
-        body: controller == null ? null : PdfViewPinch(controller: controller!),
+        body: controller == null ? null : PdfView(controller: controller!),
       );
 
   @override

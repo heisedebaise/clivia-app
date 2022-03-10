@@ -16,11 +16,12 @@ Future<String?> pickImage(ImageSource source) async {
     type: FileType.custom,
     allowedExtensions: ['jpg', 'jpeg', 'png', 'gif', 'bmp'],
   );
-  if (result == null) return Future.value(null);
 
-  return Future.value(result.paths.first);
+  return Future.value(result?.paths.first);
 }
 
 Future<String?> pickFile() async {
-  return Future.value(null);
+  FilePickerResult? result = await FilePicker.platform.pickFiles();
+
+  return Future.value(result?.paths.first);
 }
