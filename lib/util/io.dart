@@ -42,6 +42,10 @@ class Io {
 
   static void writeSync(String name, Uint8List bytes) => File(absolute(name)).writeAsBytesSync(bytes);
 
+  static Future<void> rename(String source, String target) async => File(absolute(source)).rename(absolute(target));
+
+  static void renameSync(String source, String target) => File(absolute(source)).renameSync(absolute(target));
+
   static Future<void> delete(String name) async => File(absolute(name)).delete(recursive: true);
 
   static void deleteSync(String name) async => File(absolute(name)).deleteSync(recursive: true);

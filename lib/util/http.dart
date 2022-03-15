@@ -13,6 +13,7 @@ import 'toast.dart';
 
 class Http {
   static String? _sid;
+  static final Set<String> _downloading = {};
 
   static Future<dynamic> service(String uri, {dynamic data, bool message = false, BuildContext? context}) async {
     Map<String, dynamic>? map = await post(uri, data: data, context: context);
@@ -96,20 +97,33 @@ class Http {
   }
 
   static Future<bool> download(String uri, String path) async {
+    if (_downloading.contains(path)) {
+      for (; true;) {
+        await Future.delayed(const Duration(seconds: 1));
+        if (!_downloading.contains(path)) return Future.value(true);
+      }
+    }
+
+    _downloading.add(path);
+    await Io.mkdirs(path.substring(0, path.lastIndexOf(Platform.pathSeparator)));
+    String downloading = path + '.downloading';
     try {
-      await Io.mkdirs(path.substring(0, path.lastIndexOf(Platform.pathSeparator)));
       Dio dio = Dio();
       Response response = await dio.download(
         _url(uri),
-        path,
+        downloading,
         options: Options(headers: {
           'photon-session-id': sid(),
           'accept-language': Context.locale()!.languageCode,
         }),
       );
       dio.close();
+      await Io.rename(downloading, path);
+      _downloading.remove(path);
       return Future.value(response.statusCode == 200);
     } on Exception {
+      await Io.delete(downloading);
+      _downloading.remove(path);
       return Future.value(false);
     }
   }

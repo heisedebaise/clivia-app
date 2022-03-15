@@ -34,21 +34,27 @@ class _CachedImageState extends State<CachedImage> {
   }
 
   void load() {
-    exists = false;
-    path = '';
-    if (widget.uri == '') return;
+    if (widget.uri == '') {
+      if (mounted) {
+        setState(() {
+          exists = false;
+        });
+      }
+
+      return;
+    }
 
     path = Io.absolute(widget.uri.substring(1));
     exists = Io.existsSync(path);
-    if (!exists) {
-      Http.download(widget.uri, path).then((value) {
-        if (mounted) {
-          setState(() {
-            exists = true;
-          });
-        }
-      });
-    }
+    if (exists) return;
+
+    Http.download(widget.uri, path).then((value) {
+      if (mounted) {
+        setState(() {
+          exists = true;
+        });
+      }
+    });
   }
 
   @override
