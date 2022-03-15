@@ -34,6 +34,8 @@ class _CachedImageState extends State<CachedImage> {
   }
 
   void load() {
+    exists = false;
+    path = '';
     if (widget.uri == '') return;
 
     path = Io.absolute(widget.uri.substring(1));
