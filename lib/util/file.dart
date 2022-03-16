@@ -12,10 +12,7 @@ Future<String?> pickImage(ImageSource source) async {
     return Future.value(xfile?.path);
   }
 
-  FilePickerResult? result = await FilePicker.platform.pickFiles(
-    type: FileType.custom,
-    allowedExtensions: ['jpg', 'jpeg', 'png', 'gif', 'bmp'],
-  );
+  FilePickerResult? result = await FilePicker.platform.pickFiles(type: FileType.image);
 
   return Future.value(result?.paths.first);
 }
@@ -35,8 +32,7 @@ Future<List<String>?> pickImages() async {
 
   FilePickerResult? result = await FilePicker.platform.pickFiles(
     allowMultiple: true,
-    type: FileType.custom,
-    allowedExtensions: ['jpg', 'jpeg', 'png', 'gif', 'bmp'],
+    type: FileType.image,
   );
   if (result == null || result.paths.isEmpty) return Future.value(null);
 
