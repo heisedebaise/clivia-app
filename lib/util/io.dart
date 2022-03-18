@@ -12,7 +12,7 @@ class Io {
     _dir = Context.mobile ? (await getApplicationDocumentsDirectory()).path : Directory.current.path;
     if (!_dir!.endsWith(Platform.pathSeparator)) _dir = _dir! + Platform.pathSeparator;
     _dir = _dir!.replaceAll(Platform.pathSeparator + 'app_flutter' + Platform.pathSeparator, Platform.pathSeparator);
-    _dir = _dir! + 'data' + Platform.pathSeparator;
+    _dir = _dir! + 'dataset' + Platform.pathSeparator;
     await mkdirs(_dir!);
   }
 
