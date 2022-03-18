@@ -8,8 +8,8 @@ import 'generated/l10n.dart';
 import 'util/http.dart';
 
 class Upgrader {
-  static const int _v = 1;
-  static Map<String, dynamic> _version = {'version': _v};
+  static const int version = 1;
+  static Map<String, dynamic> _version = {'version': version};
 
   static Future<void> latest(BuildContext context) async {
     int client = _client();
@@ -77,7 +77,7 @@ class Upgrader {
     return list;
   }
 
-  static bool newer() => _get('version', _v) > _v;
+  static bool newer() => _get('version', version) > version;
 
   static String name() => _get('name', '');
 

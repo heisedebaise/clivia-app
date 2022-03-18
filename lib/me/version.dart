@@ -1,5 +1,6 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 import '../components/popage.dart';
 import '../generated/l10n.dart';
@@ -43,9 +44,16 @@ class VersionPage extends StatelessWidget {
         title: S.of(context).meVersion,
         body: ListView(
           children: [
-            const Icon(
-              Icons.copyright,
-              size: 256,
+            Column(
+              children: [
+                Image.asset(
+                  'assets/images/logo.png',
+                  width: 128,
+                  fit: BoxFit.fill,
+                ),
+                Text(S.of(context).title),
+                Text(Upgrader.name() + '.' + Upgrader.version.toString()),
+              ],
             ),
             Card(
               child: Column(
