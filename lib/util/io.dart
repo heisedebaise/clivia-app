@@ -3,14 +3,16 @@ import 'dart:typed_data';
 
 import 'package:path_provider/path_provider.dart';
 
+import '../context.dart';
+
 class Io {
   static String? _dir;
 
   static Future<void> init() async {
-    _dir = (await getApplicationDocumentsDirectory()).path;
+    _dir = Context.mobile ? (await getApplicationDocumentsDirectory()).path : Directory.current.path;
     if (!_dir!.endsWith(Platform.pathSeparator)) _dir = _dir! + Platform.pathSeparator;
     _dir = _dir!.replaceAll(Platform.pathSeparator + 'app_flutter' + Platform.pathSeparator, Platform.pathSeparator);
-    _dir = _dir! + 'clivia' + Platform.pathSeparator;
+    _dir = _dir! + 'data' + Platform.pathSeparator;
     await mkdirs(_dir!);
   }
 
