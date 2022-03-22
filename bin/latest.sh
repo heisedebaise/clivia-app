@@ -17,6 +17,7 @@ dependencies=(
  webview_flutter
  gesture_password_widget
  pdfx
+ flutter_markdown
 )
 
 for i in `seq 0 $[${#dependencies[*]}-1]`; do

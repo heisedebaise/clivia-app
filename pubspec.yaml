@@ -52,6 +52,7 @@ dependencies:
   gesture_password_widget: ^2.0.0
   file_picker: ^4.5.0
   pdfx: ^2.0.1+1
+  flutter_markdown: ^0.6.9
 
 dev_dependencies:
   flutter_test:
