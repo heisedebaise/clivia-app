@@ -1,6 +1,5 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_markdown/flutter_markdown.dart';
 
 import '../components/popage.dart';
 import '../generated/l10n.dart';
@@ -66,7 +65,7 @@ class VersionPage extends StatelessWidget {
                   const Divider(height: 1),
                   Padding(
                     padding: const EdgeInsets.all(8),
-                    child: MarkdownBody(data: Upgrader.explain()),
+                    child: Text(Upgrader.explain()),
                   ),
                 ],
               ),
