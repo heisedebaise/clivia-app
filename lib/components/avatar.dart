@@ -1,5 +1,7 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import '../util/http.dart';
 import '../util/style.dart';
 import 'cachedimage.dart';
 
@@ -15,17 +17,30 @@ class Avatar extends StatelessWidget {
   Widget build(BuildContext context) => ClipRRect(
         borderRadius: BorderRadius.circular(size / 8),
         child: GestureDetector(
-          child: CachedImage(
-            uri: uri,
-            width: size,
-            height: size,
-            placeholder: _placeholder,
-          ),
+          child: _image(),
           onTap: () {
             if (uid == '') return;
           },
         ),
       );
+
+  Widget _image() {
+    if (kIsWeb) {
+      return Image.network(
+        Http.url(uri),
+        width: size,
+        height: size,
+        errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) => _placeholder(context),
+      );
+    }
+
+    return CachedImage(
+      uri: uri,
+      width: size,
+      height: size,
+      placeholder: _placeholder,
+    );
+  }
 
   Widget _placeholder(BuildContext context) {
     if (nick.isEmpty) {

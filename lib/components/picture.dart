@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:typed_data';
+
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -10,6 +13,7 @@ import '../util/http.dart';
 import '../util/loading.dart';
 import '../util/style.dart';
 import '../util/toast.dart';
+import 'piclocal.dart' if (dart.library.js) 'piclocal_web.dart';
 
 class PicturePage extends StatefulWidget {
   final String title;
@@ -56,7 +60,7 @@ class _PicturePageState extends State<PicturePage> {
             IconButton(
               onPressed: () async {
                 Loading.show();
-                List<int>? data = await cropImage(editor.currentState!);
+                List<int>? data = await cropImage(editor.currentState!, rawImageData());
                 if (data == null) {
                   Loading.hide();
                   Toast.error(0, S.of(context).pictureCropFail);
@@ -112,13 +116,10 @@ class _PicturePageState extends State<PicturePage> {
 
   Widget body() {
     if (local != null) {
-      return ExtendedImage.file(
-        File(local!),
-        fit: BoxFit.contain,
-        mode: ExtendedImageMode.editor,
+      return Piclocal(
+        local: local!,
         extendedImageEditorKey: editor,
-        cacheRawData: true,
-        initEditorConfigHandler: (state) => config(),
+        initEditorConfigHandler: config,
       );
     }
 
@@ -130,7 +131,7 @@ class _PicturePageState extends State<PicturePage> {
         mode: ExtendedImageMode.editor,
         extendedImageEditorKey: editor,
         cacheRawData: true,
-        initEditorConfigHandler: (state) => config(),
+        initEditorConfigHandler: config,
       );
     }
 
@@ -146,7 +147,7 @@ class _PicturePageState extends State<PicturePage> {
     );
   }
 
-  EditorConfig config() => EditorConfig(
+  EditorConfig config(ExtendedImageState? state) => EditorConfig(
         maxScale: widget.scale,
         cropRectPadding: const EdgeInsets.all(16),
         cropAspectRatio: widget.ratio,
@@ -204,4 +205,15 @@ class _PicturePageState extends State<PicturePage> {
         icon: Icon(icon),
         label: label,
       );
+
+  Uint8List rawImageData() {
+    if (local != null && local!.startsWith('data:image/')) {
+      int indexOf = local!.indexOf(',');
+      if (indexOf > -1) {
+        return base64Decode(local!.substring(indexOf + 1));
+      }
+    }
+
+    return editor.currentState!.rawImageData;
+  }
 }

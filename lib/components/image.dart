@@ -1,11 +1,12 @@
+import 'dart:typed_data';
 import 'dart:ui';
 
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/foundation.dart';
 import 'package:image/image.dart';
 
-Future<List<int>?> cropImage(ExtendedImageEditorState state) async {
-  Animation? src = await compute(decodeAnimation, state.rawImageData);
+Future<List<int>?> cropImage(ExtendedImageEditorState state, Uint8List rawImageData) async {
+  Animation? src = await compute(decodeAnimation, rawImageData);
   if (src == null) return null;
 
   EditActionDetails? action = state.editAction;

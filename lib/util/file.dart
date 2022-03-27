@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:file_picker/file_picker.dart';
+import 'package:flutter/foundation.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../context.dart';
@@ -13,8 +16,9 @@ Future<String?> pickImage(ImageSource source) async {
   }
 
   FilePickerResult? result = await FilePicker.platform.pickFiles(type: FileType.image);
+  if (result == null) return null;
 
-  return Future.value(result?.paths.first);
+  return Future.value(kIsWeb ? _imageBase64(result.files.first) : result.paths.first);
 }
 
 Future<List<String>?> pickImages() async {
@@ -48,4 +52,13 @@ Future<String?> pickFile() async {
   FilePickerResult? result = await FilePicker.platform.pickFiles();
 
   return Future.value(result?.paths.first);
+}
+
+String _imageBase64(PlatformFile file) {
+  if (file.extension == null || file.bytes == null) return '';
+
+  String type = file.extension!.toLowerCase();
+  if (type == 'jpg') type = 'jpeg';
+
+  return 'data:image/$type;base64,${base64Encode(file.bytes!)}';
 }

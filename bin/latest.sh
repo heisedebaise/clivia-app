@@ -4,6 +4,7 @@ dependencies=(
  crypto
  path_provider
  provider
+ shared_preferences
  dio
  flutter_easyloading
  image

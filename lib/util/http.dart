@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http_parser/http_parser.dart';
 
@@ -97,6 +98,8 @@ class Http {
   }
 
   static Future<bool> download(String uri, String path) async {
+    if (kIsWeb) return Future.value(false);
+
     if (_downloading.contains(path)) {
       for (; true;) {
         await Future.delayed(const Duration(seconds: 1));
@@ -147,6 +150,8 @@ class Http {
   }
 
   static String _url(String uri) {
+    if (kIsWeb) return uri;
+
     return 'http://${Context.host()}:8080$uri';
   }
 }
