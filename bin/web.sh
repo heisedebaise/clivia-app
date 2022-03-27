@@ -4,7 +4,8 @@ rm -rf build
 
 flutter build web
 
-dir=~/tomcat/webapps/ROOT/
+#dir=~/tomcat/webapps/ROOT
+dir=../clivia/clivia-web/src/main/webapp
 rm -rf $dir/*.*
 rm -rf $dir/assets
 rm -rf $dir/icons
