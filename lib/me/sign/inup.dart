@@ -181,7 +181,7 @@ class _InUpPageState extends State<InUpPage> {
                       nick.text,
                     )) Navigator.pop(context);
                   } else {
-                    if (await User.signIn(context, username.text, password.text)) Navigator.pop(context);
+                    if (await User.signIn(username.text, password.text)) Navigator.pop(context);
                   }
                 },
           child: Text(text),

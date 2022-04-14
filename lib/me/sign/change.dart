@@ -52,7 +52,7 @@ class _ChangePageState extends State<ChangePage> {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () async {
-                    if (await User.modify(context, {widget.name: controller!.text})) {
+                    if (await User.modify({widget.name: controller!.text})) {
                       Navigator.pop(context, true);
                     }
                   },

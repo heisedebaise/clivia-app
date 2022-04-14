@@ -29,7 +29,7 @@ class User {
     String password,
     String nick,
   ) async {
-    return _sign(context, '/user/sign-up', {
+    return _sign('/user/sign-up', {
       'type': '',
       'uid': username,
       'password': password,
@@ -38,11 +38,10 @@ class User {
   }
 
   static Future<bool> signIn(
-    BuildContext context,
     String username,
     String password,
   ) async {
-    return _sign(context, '/user/sign-in', {
+    return _sign('/user/sign-in', {
       'type': '',
       'uid': username,
       'password': password,
@@ -50,7 +49,6 @@ class User {
   }
 
   static Future<bool> _sign(
-    BuildContext context,
     String uri,
     Map<String, String> body,
   ) async {
@@ -58,7 +56,6 @@ class User {
       uri,
       data: body,
       message: true,
-      context: context,
     );
     if (map == null) return Future.value(false);
 
@@ -204,14 +201,14 @@ class User {
     return value == null || value == '' ? empty : value;
   }
 
-  static Future<bool> modify(BuildContext context, Map<String, String> map) {
+  static Future<bool> modify(Map<String, String> map) {
     Map<String, String> body = {};
     for (var name in _modifies) {
       if (_map.containsKey(name)) body[name] = _map[name].toString();
     }
     body.addAll(map);
 
-    return _sign(context, '/user/modify', body);
+    return _sign('/user/modify', body);
   }
 
   static Future<void> delete(String id) async {

@@ -108,7 +108,7 @@ class _SignPageState extends State<SignPage> {
           uri: User.avatar(''),
           ratio: 1,
           ok: (uri) async {
-            await User.modify(context, {'avatar': uri});
+            await User.modify({'avatar': uri});
             setState(() {});
           },
         );

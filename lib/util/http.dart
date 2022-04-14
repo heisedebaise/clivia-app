@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:http_parser/http_parser.dart';
 
 import '../context.dart';
@@ -16,8 +15,8 @@ class Http {
   static String? _sid;
   static final Set<String> _downloading = {};
 
-  static Future<dynamic> service(String uri, {dynamic data, bool message = false, BuildContext? context}) async {
-    Map<String, dynamic>? map = await post(uri, data: data, context: context);
+  static Future<dynamic> service(String uri, {dynamic data, bool message = false}) async {
+    Map<String, dynamic>? map = await post(uri, data: data);
     if (map == null) return Future.value(null);
 
     if (message && map.containsKey('message')) {
@@ -35,12 +34,12 @@ class Http {
     return Future.value(map.containsKey('data') ? map['data'] : null);
   }
 
-  static Future<Map<String, dynamic>?> post(String uri, {dynamic data, BuildContext? context}) async {
+  static Future<Map<String, dynamic>?> post(String uri, {dynamic data}) async {
     Response? response = await _post(uri, data);
     if (response == null || response.statusCode != 200) {
       return {
         'code': response == null ? 500 : response.statusCode,
-        'message': context == null ? 'HTTP fail' : S.of(context).httpFailure,
+        'message': Context.navigatorKey.currentContext == null ? 'HTTP fail' : S.of(Context.navigatorKey.currentContext!).httpFailure,
       };
     }
 
@@ -57,8 +56,7 @@ class Http {
     return response.data;
   }
 
-  static Future<Map<String, dynamic>?> upload(String name,
-      {String? file, List<int>? bytes, String? filename, String? contentType, BuildContext? context}) async {
+  static Future<Map<String, dynamic>?> upload(String name, {String? file, List<int>? bytes, String? filename, String? contentType}) async {
     MultipartFile? mf;
     MediaType? mt = contentType == null ? null : MediaType.parse(contentType);
     if (file != null) {
@@ -72,7 +70,7 @@ class Http {
     if (response == null || response.statusCode != 200) {
       return {
         'code': response == null ? 500 : response.statusCode,
-        'message': context == null ? 'HTTP fail' : S.of(context).httpFailure,
+        'message': Context.navigatorKey.currentContext == null ? 'HTTP fail' : S.of(Context.navigatorKey.currentContext!).httpFailure,
       };
     }
 
