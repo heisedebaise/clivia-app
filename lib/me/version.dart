@@ -25,8 +25,11 @@ class Version extends StatelessWidget {
       );
 
   Widget name(BuildContext context) {
+    String name = Upgrader.name();
+    if (name.isEmpty) return Container();
+
     Text text = Text(
-      Upgrader.name(),
+      name,
       style: Style.tileSubtitle(Theme.of(context)),
     );
 
@@ -60,7 +63,8 @@ class VersionPage extends StatelessWidget {
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(8),
-                    child: Text(Upgrader.name() + '.' + Upgrader.version.toString()),
+                    child: Text(
+                        Upgrader.name() + '.' + Upgrader.version.toString()),
                   ),
                   const Divider(height: 1),
                   Padding(
