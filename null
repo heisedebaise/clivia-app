@@ -1,0 +1,4 @@
+下列路径根据您的一个 .gitignore 文件而被忽略：
+build
+clivia.iml
+dataset
